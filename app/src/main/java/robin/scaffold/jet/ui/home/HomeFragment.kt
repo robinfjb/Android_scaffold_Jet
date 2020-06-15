@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_home.*
 import robin.scaffold.jet.R
+import robin.scaffold.jet.ui.NavTestActivity
+import robin.scaffold.jet.utils.startActivity
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
@@ -21,15 +23,18 @@ class HomeFragment : Fragment() {
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         homeViewModel.getText().observe(viewLifecycleOwner, Observer {
-            text_home.text = it
+            text_home.text = "${text_home.text}\n$it"
         })
+        homeViewModel.displayArgu(arguments)
         return root
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         display_button.setOnClickListener {
-            display_button.isEnabled = false
             homeViewModel.display()
+        }
+        go_to_nav.setOnClickListener {
+            requireContext().startActivity<NavTestActivity>()
         }
     }
 }
