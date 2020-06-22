@@ -1,12 +1,9 @@
 package robin.scaffold.jet.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
-import robin.scaffold.jet.utils.utc2Local
-import java.io.*
 
 class HomeViewModel : ViewModel(){
     private val _text = MutableLiveData<String>().apply {
@@ -28,11 +25,7 @@ class HomeViewModel : ViewModel(){
     fun displayArgu(arguments : Bundle?) {
         val msg = arguments?.let { HomeFragmentArgs.fromBundle(it).myArg }
         msg ?.apply {
-            viewModelScope.launch {
-                withContext(Dispatchers.IO) {
-                    postMessage(msg)
-                }
-            }
+            postMessage(msg)
         }
     }
 
