@@ -4,6 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Generate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/delete_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add"
+        />
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_id" />
+
+    <Button
+        android:id="@+id/query_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Query All"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete" />
+
+    <EditText
+        android:id="@+id/query_2_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:hint="模糊名称"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/query_1"
+        />
+    <EditText
+        android:id="@+id/query_2_price1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:inputType="number"
+        android:hint="价格区间（低）"
+        app:layout_constraintLeft_toRightOf="@id/query_2_name"
+        app:layout_constraintTop_toBottomOf="@id/query_1"
+        />
+    <EditText
+        android:id="@+id/query_2_price2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:inputType="number"
+        android:hint="价格区间（高）"
+        app:layout_constraintLeft_toRightOf="@id/query_2_price1"
+        app:layout_constraintTop_toBottomOf="@id/query_1"
+        />
+    <Button
+        android:id="@+id/query_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Query By Filters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/query_2_name" />
+
+
     <TextView
         android:id="@+id/text_tools"
         android:layout_width="match_parent"
@@ -15,5 +93,5 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/query_2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

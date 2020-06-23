@@ -6,6 +6,9 @@ import android.app.Service
 import android.content.Context
 import android.os.Environment
 import android.util.Log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 import java.io.RandomAccessFile
@@ -22,6 +25,13 @@ inline fun <reified T: Activity> Activity.startActivityForResult(requestCode: In
 inline fun <reified T: Service> Context.startService(vararg params: Pair<String, Any?>) =
         Internals.internalStartService(this, T::class.java, params)
 
+fun coroutine(block: suspend () -> Unit) {
+    CoroutineScope(Dispatchers.IO).launch { block() }
+}
+
+fun coroutineMain(block: suspend () -> Unit) {
+    CoroutineScope(Dispatchers.Main).launch { block() }
+}
 
 fun String.utc2Local(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")

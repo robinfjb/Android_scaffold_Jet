@@ -40,5 +40,6 @@ ext {
             lifecycle: '2.0.0',
             glide    : '4.9.0',
             ktor_version    : '1.2.2',
+            room : '2.2.5'
     ]
 }

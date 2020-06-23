@@ -13,6 +13,7 @@ import robin.scaffold.jet.R
 import robin.scaffold.jet.databinding.FragmentDataBindingComponent
 import robin.scaffold.jet.databinding.FragmentShareBinding
 import robin.scaffold.jet.databinding.autoCleared
+import robin.scaffold.jet.utils.ContextViewModelFactory
 
 class BindFragment : Fragment(), TestAction{
     private lateinit var bindViewModel: BindViewModel
@@ -24,7 +25,7 @@ class BindFragment : Fragment(), TestAction{
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bindViewModel = ViewModelProviders.of(this).get(BindViewModel::class.java)
+        bindViewModel = ViewModelProviders.of(this, ContextViewModelFactory(requireContext())).get(BindViewModel::class.java)
         val dataBinding = DataBindingUtil.inflate<FragmentShareBinding>(
                 inflater,
                 R.layout.fragment_share,
@@ -43,7 +44,7 @@ class BindFragment : Fragment(), TestAction{
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.user = User("robin", 777)
+        binding.user = bindViewModel.getUser()
     }
 
     override fun onPageCLick() {
