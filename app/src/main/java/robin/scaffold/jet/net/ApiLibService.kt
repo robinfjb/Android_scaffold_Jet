@@ -7,5 +7,5 @@ import retrofit2.http.*
 interface ApiLibService {
     @Headers("Content-Type: application/json", "Content-Encoding: gzip")
     @GET("/data/cityinfo/101010100.html")
-    fun weather(): Single<LocationResult>
+    fun weather(): Single<WeatherResult>
 }

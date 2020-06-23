@@ -52,7 +52,7 @@ class SdkNetApi  {
         return httpClientBuilder.build()
     }
 
-    fun getWeather(): Single<LocationResult> {
+    fun getWeather(): Single<WeatherResult> {
         return apiLibService.weather();
     }
 

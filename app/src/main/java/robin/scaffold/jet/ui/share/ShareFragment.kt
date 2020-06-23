@@ -33,13 +33,18 @@ class ShareFragment : Fragment(), ShareAction{
                 false,
                 dataBindingComponent
         )
-        val textView: TextView = dataBinding.root.findViewById(R.id.text_share)
         shareViewModel.getText().observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            binding.textShare.text = it
         })
         binding = dataBinding
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.presenter = this@ShareFragment
         return dataBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        binding.user = User("robin", 777)
     }
 
     override fun onPageCLick() {
