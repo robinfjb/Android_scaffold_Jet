@@ -1,10 +1,9 @@
-package robin.scaffold.jet.ui.share
+package robin.scaffold.jet.ui.databind
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,8 +14,8 @@ import robin.scaffold.jet.databinding.FragmentDataBindingComponent
 import robin.scaffold.jet.databinding.FragmentShareBinding
 import robin.scaffold.jet.databinding.autoCleared
 
-class ShareFragment : Fragment(), ShareAction{
-    private lateinit var shareViewModel: ShareViewModel
+class BindFragment : Fragment(), TestAction{
+    private lateinit var bindViewModel: BindViewModel
     private var binding by autoCleared<FragmentShareBinding>()
     private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent()
 
@@ -25,7 +24,7 @@ class ShareFragment : Fragment(), ShareAction{
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        shareViewModel = ViewModelProviders.of(this).get(ShareViewModel::class.java)
+        bindViewModel = ViewModelProviders.of(this).get(BindViewModel::class.java)
         val dataBinding = DataBindingUtil.inflate<FragmentShareBinding>(
                 inflater,
                 R.layout.fragment_share,
@@ -33,12 +32,12 @@ class ShareFragment : Fragment(), ShareAction{
                 false,
                 dataBindingComponent
         )
-        shareViewModel.getText().observe(viewLifecycleOwner, Observer {
+        bindViewModel.getText().observe(viewLifecycleOwner, Observer {
             binding.textShare.text = it
         })
         binding = dataBinding
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.presenter = this@ShareFragment
+        binding.presenter = this@BindFragment
         return dataBinding.root
     }
 

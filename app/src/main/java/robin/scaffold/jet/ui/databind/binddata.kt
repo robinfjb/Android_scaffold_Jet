@@ -1,4 +1,4 @@
-package robin.scaffold.jet.ui.share
+package robin.scaffold.jet.ui.databind
 
 data class User (
    val userName:String,
