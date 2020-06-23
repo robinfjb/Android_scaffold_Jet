@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import robin.scaffold.jet.db.*
+import robin.scaffold.jet.repo.RoomRepository
 import robin.scaffold.jet.utils.ListTypeConverters.strListToString
 import robin.scaffold.jet.utils.coroutine
 
 class RoomViewModel(private val context: Context) : ViewModel() {
     private val _text = MutableLiveData<String>("This is tools Fragment")
-    private val db : AppDatabase by lazy {
-        Room.databaseBuilder(context, AppDatabase::class.java, "database-robin")
-                .fallbackToDestructiveMigration().build()
+    private val repository:RoomRepository by lazy {
+        RoomRepository(context)
     }
 
     fun getTex() = _text
@@ -24,40 +24,29 @@ class RoomViewModel(private val context: Context) : ViewModel() {
         val b2 = Book("第二本书", 200, Producer("BBB"), s1.shopId)
         val b3 = Book("第三本书", 300, Producer("CCC"), s2.shopId)
         coroutine {
-            db.bookDao().insertBook(b1, b2, b3)
-            db.bookDao().insertShop(s1, s2)
+            repository.insertBook(b1, b2, b3)
+            repository.insertShop(s1, s2)
         }
     }
 
     fun delete(id:Int) {
         coroutine {
-            val books = db.bookDao().loadAllByIds(intArrayOf(id))
-            books?.apply {
-                if(books.isEmpty().not()) {
-                    db.bookDao().delete(books[0])
-                }
-            }
+            repository.deleteBookById(id)
         }
     }
 
     fun queryAll() {
         coroutine {
-            val books = db.bookDao().getAll()
-            val strs = books.map {
-                it.toString()
-            }
-            _text.postValue(strListToString(strs))
+            val result = repository.queryAll()
+            _text.postValue(result)
         }
 
     }
 
     fun queryByFilter(name:String, priceLowest:Int, priceHighest:Int) {
         coroutine {
-            val books = db.bookDao().findByFilter("%${name}%", priceLowest, priceHighest)
-            val strs = books.map {
-                it.toString()
-            }
-            _text.postValue(strListToString(strs))
+            val result = repository.queryByFilter("%${name}%", priceLowest, priceHighest)
+            _text.postValue(result)
         }
     }
 }

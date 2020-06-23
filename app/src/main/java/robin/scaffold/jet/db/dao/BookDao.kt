@@ -11,21 +11,21 @@ interface BookDao {
 //    fun getAll(): List<Book>
 
     @Query("SELECT * FROM book WHERE id IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<Book>
+    suspend fun loadAllByIds(userIds: IntArray): List<Book>
 
     @Query("SELECT * FROM book WHERE name LIKE :name AND price BETWEEN :priceLowest AND :priceHighest")
-    fun findByFilter(name: String, priceLowest:Int, priceHighest:Int): List<Book>
+    suspend fun findByFilter(name: String, priceLowest:Int, priceHighest:Int): List<Book>
 
     @Delete
-    fun delete(user: Book)
+    suspend fun delete(user: Book)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBook(vararg data: Book)
+    suspend fun insertBook(vararg data: Book)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertShop(vararg data: Shop)
+    suspend fun insertShop(vararg data: Shop)
 
     @Transaction
     @Query("SELECT * FROM shop")
-    fun getAll(): List<BookWithShop>
+    suspend fun getAll(): List<BookWithShop>
 }
