@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Jet</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -13,4 +13,17 @@
     <string name="menu_slideshow">Tool</string>
 
     <string name="menu_share">Share</string>
+
+    <!-- NOTR -->
+    <string name="notification_channel_id"><xliff:g id="notification_channel_id">"robin.scaffold.jet.notification.exposureNotificationChannelId"</xliff:g></string>
+    <!-- NOTR -->
+    <string name="notification_id"><xliff:g id="notification_id">"1"</xliff:g></string>
+    <!-- XTXT: Notification channel name for os settings -->
+    <string name="notification_name">"Robin-App"</string>
+    <!-- XTXT: Notification channel description for os settings -->
+    <string name="notification_description">"Notifications from the Robin-App"</string>
+    <!-- XHED: Notification title -->
+    <string name="notification_headline">"CRobin-App"</string>
+    <!-- XTXT: Notification body -->
+    <string name="notification_body">"You have new messages from your Robin-App."</string>
 </resources>
