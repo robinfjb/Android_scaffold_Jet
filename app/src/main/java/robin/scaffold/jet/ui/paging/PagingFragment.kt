@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,7 +20,6 @@ import robin.scaffold.jet.databinding.FragmentDataBindingComponent
 import robin.scaffold.jet.databinding.FragmentSecondHomeBinding
 import robin.scaffold.jet.databinding.autoCleared
 import robin.scaffold.jet.net.Status
-import robin.scaffold.jet.ui.home.HomeSecondFragmentDirections
 
 class PagingFragment : Fragment() {
     private lateinit var pagingViewModel: PagingViewModel
@@ -49,7 +47,7 @@ class PagingFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         go_to_home.setOnClickListener {
             Navigation.findNavController(it).navigate(
-                    HomeSecondFragmentDirections.actionHomeSecondFragmentToHomeFragment("这是传过来的参数")
+                    PagingFragmentDirections.actionHomeSecondFragmentToHomeFragment("这是传过来的参数")
             )
         }
         refresh.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW)
@@ -90,5 +88,6 @@ class PagingFragment : Fragment() {
         pagingViewModel.posts.observe(viewLifecycleOwner, Observer {
             mAdapter.submitList(it)
         })
+        pagingViewModel.invoke()
     }
 }

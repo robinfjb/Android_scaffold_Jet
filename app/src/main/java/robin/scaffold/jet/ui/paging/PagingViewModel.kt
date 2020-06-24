@@ -17,7 +17,7 @@ class PagingViewModel : ViewModel() {
 
     private val data = MutableLiveData<String>()
     private val repoResult = Transformations.map(data) {
-        repository.getBookList(10)
+        repository.getBookList(20)
     }
 
     val posts = Transformations.switchMap(repoResult) { it.pagedList }!!
@@ -31,5 +31,9 @@ class PagingViewModel : ViewModel() {
     fun retry() {
         val listing = repoResult?.value
         listing?.retry?.invoke()
+    }
+
+    fun invoke() {
+        data.value = ""
     }
 }
