@@ -1,2 +1,3 @@
+include ':track'
 rootProject.name='Jet'
 include ':app'

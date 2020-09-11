@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'android-aspectjx'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -97,6 +99,8 @@ dependencies {
 
     //流式布局
     implementation 'com.google.android:flexbox:1.1.0'
+
+    implementation project(':track')
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

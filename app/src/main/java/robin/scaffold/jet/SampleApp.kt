@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import robin.scaffold.track.hook.HookTrack
 
 class SampleApp : Application(), LifecycleObserver {
     companion object {
@@ -12,6 +13,12 @@ class SampleApp : Application(), LifecycleObserver {
         var isAppInForeground = false
         fun getAppContext(): Context =
                 instance.applicationContext
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        HookTrack.init(this)
     }
 
 
