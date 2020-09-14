@@ -11,15 +11,13 @@ import android.widget.FrameLayout
 import robin.scaffold.track.Constants
 import robin.scaffold.track.Utils.getAbsolutePath
 
-class ProxyFrameLayout(activity: Activity?) : FrameLayout(activity!!) {
-    private var resumedActivity: Activity? = null
-    private val touchViewHashCode = -1L
+class ProxyFrameLayout(private val resumedActivity: Activity) : FrameLayout(resumedActivity) {
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 val touchViewDown = findEventSrcView(event, this)
                 if (touchViewDown != null) {
-                    Log.d(Constants.TAG, "Activity:" + resumedActivity!!::class.java.name
+                    Log.d(Constants.TAG, "Activity:" + resumedActivity::class.java.name
                             + "- ACTION_DOWN:" + getAbsolutePath(touchViewDown))
                 }
             }
@@ -28,7 +26,7 @@ class ProxyFrameLayout(activity: Activity?) : FrameLayout(activity!!) {
             MotionEvent.ACTION_UP -> {
                 val touchViewUp = findEventSrcView(event, this)
                 if (touchViewUp != null) {
-                    Log.d(Constants.TAG, "Activity:" + resumedActivity!!::class.java.name
+                    Log.d(Constants.TAG, "Activity:" + resumedActivity::class.java.name
                             + "- ACTION_UP:" + getAbsolutePath(touchViewUp))
                 }
             }
@@ -76,9 +74,5 @@ class ProxyFrameLayout(activity: Activity?) : FrameLayout(activity!!) {
             }
         }
         return false
-    }
-
-    init {
-        resumedActivity = activity
     }
 }
