@@ -1,5 +1,7 @@
 package robin.scaffold.track
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
@@ -83,5 +85,4 @@ object Utils {
         }
         return -1
     }
-
 }

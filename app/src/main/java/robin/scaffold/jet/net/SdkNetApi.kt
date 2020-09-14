@@ -3,6 +3,7 @@ package robin.scaffold.jet.net
 import androidx.annotation.Keep
 import com.google.gson.Gson
 import io.reactivex.Single
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -12,7 +13,10 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import robin.scaffold.jet.BuildConfig
+import robin.scaffold.jet.SampleApp
+import robin.scaffold.jet.net.interceptor.NoNetworkInterceptor
 import robin.scaffold.jet.net.interceptor.RetryInterceptor
+import robin.scaffold.track.net.interceptor.PrintingEventListener
 import java.util.concurrent.TimeUnit
 
 @Keep
@@ -49,6 +53,11 @@ class SdkNetApi  {
         httpClientBuilder.connectTimeout(60, TimeUnit.SECONDS)
         httpClientBuilder.readTimeout(60, TimeUnit.SECONDS)
         httpClientBuilder.writeTimeout(60, TimeUnit.SECONDS)
+        val cacheDir = SampleApp.getAppContext().cacheDir
+        val maxSize = 50 * 1024 * 1024L
+        val cache = Cache(cacheDir, maxSize)
+        httpClientBuilder.cache(cache)
+        httpClientBuilder.eventListenerFactory(PrintingEventListener.FACTORY)
         mInterceptors.forEach { httpClientBuilder.addInterceptor(it) }
 
         return httpClientBuilder.build()
@@ -59,7 +68,9 @@ class SdkNetApi  {
                 if (BuildConfig.DEBUG) it.setLevel(HttpLoggingInterceptor.Level.BODY)
             },
             RetryInterceptor(),
-            GzipRequestInterceptor()
+            GzipRequestInterceptor(),
+            NoNetworkInterceptor(SampleApp.getAppContext())
+
     )
 
     fun getWeather(): Single<WeatherResult> {

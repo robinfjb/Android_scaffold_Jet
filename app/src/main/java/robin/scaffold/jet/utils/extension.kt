@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Fragment
 import android.app.Service
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Environment
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
@@ -37,4 +38,17 @@ fun String.utc2Local(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     val date = Date(toLong())
     return simpleDateFormat.format(date)
+}
+
+fun isNetworkConnected(context: Context): Boolean {
+    if (context != null) {
+        try {
+            val connectivityManager = context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = connectivityManager?.activeNetworkInfo
+            return networkInfo != null && networkInfo.isAvailable
+        } catch (ignored: Exception) {
+        }
+    }
+    return true
 }
