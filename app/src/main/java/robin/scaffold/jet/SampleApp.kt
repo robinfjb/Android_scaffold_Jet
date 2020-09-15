@@ -18,7 +18,6 @@ class SampleApp : Application(), LifecycleObserver {
     override fun onCreate() {
         super.onCreate()
         instance = this@SampleApp
-        HookTrack.init(this)
     }
 
 

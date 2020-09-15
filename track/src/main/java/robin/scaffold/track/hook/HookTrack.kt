@@ -12,6 +12,7 @@ object HookTrack {
         }
         if (!activityLifeCycleRegister) {
             application.registerActivityLifecycleCallbacks(HookActivityLifecycleCallbacks())
+
             activityLifeCycleRegister = true
         }
     }

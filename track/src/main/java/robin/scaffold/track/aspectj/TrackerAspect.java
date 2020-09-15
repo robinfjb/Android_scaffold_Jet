@@ -1,7 +1,9 @@
 package robin.scaffold.track.aspectj;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.Dialog;
+import android.os.SystemClock;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
@@ -14,11 +16,21 @@ import java.lang.reflect.Field;
 
 import robin.scaffold.track.aspectj.ReflectUtils;
 import robin.scaffold.track.aspectj.Tracker;
+import robin.scaffold.track.hook.HookActivityLifecycleCallbacks;
+import robin.scaffold.track.hook.HookTrack;
 
 import static robin.scaffold.track.Constants.TAG;
 
 @Aspect
 public class TrackerAspect {
+    public static boolean isColdStart = true;
+
+    @After("execution(* android.app.Application+.onCreate(..))")
+    public void onApplicationCreate(JoinPoint joinPoint) {
+        Log.d(TAG, "onApplicationCreate: ");
+        HookTrack.INSTANCE.init((Application) joinPoint.getThis());
+        HookActivityLifecycleCallbacks.Companion.setSStartUpTimeStamp(SystemClock.elapsedRealtime());
+    }
 
     @After("execution(* android.app.Activity+.onCreate(..))")
     public void onActivityResume(JoinPoint joinPoint) {
