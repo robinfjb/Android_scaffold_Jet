@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="robin.sdk.keeplive">
+
+    /
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application>
+        <activity android:name="robin.sdk.keeplive.activity.OnePixActivity"
+            android:theme="@style/onePixelActivity"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"/>
+    </application>
+</manifest>

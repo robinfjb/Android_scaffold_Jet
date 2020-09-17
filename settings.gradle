@@ -1,3 +1,4 @@
+include ':keeplive'
 include ':track'
 rootProject.name='Jet'
 include ':app'

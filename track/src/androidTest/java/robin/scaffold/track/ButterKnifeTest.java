@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 class ButterKnifeTest {
-    @InjectView(R.id.tv)
+   /* @InjectView(R.id.tv)
     private TextView tv;
 
     @InjectView(R.id.iv)
@@ -33,5 +33,5 @@ class ButterKnifeTest {
                 Toast.makeText(this,"onClick,IV",Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
+    }*/
 }
