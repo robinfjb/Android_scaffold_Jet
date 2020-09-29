@@ -1,3 +1,4 @@
+include ':ndk'
 include ':keeplive'
 include ':track'
 rootProject.name='Jet'

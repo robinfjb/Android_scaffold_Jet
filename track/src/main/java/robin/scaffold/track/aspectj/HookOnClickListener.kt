@@ -51,15 +51,15 @@ object HookOnClickListener {
     internal class MyInvocationHandler(private val target:Any) : InvocationHandler {
         override fun invoke(proxy: Any, method: Method, args: Array<out Any>): Any {
             if (method.name.equals("onBindViewHolder", ignoreCase = true)) {
-                Log.e("fjb","OrderHandlerProxy.invoke.before")
+                Log.e("robin","OrderHandlerProxy.invoke.before")
                 val orderId = args[1] as Int
                 //重点之三，这个地方通过反射调用委托类的方法
                 val invoke = method.invoke(target, orderId)
-                Log.e("fjb","OrderHandlerProxy.invoke.after")
+                Log.e("robin","OrderHandlerProxy.invoke.after")
                 return invoke
             } else {
                 //当前执行的方法不是我们需要代理的方法时不做操作直接执行委托的相应方法
-                Log.e("fjb","Method.name:" + method.name)
+                Log.e("robin","Method.name:" + method.name)
                 return method.invoke(target, *args)
             }
         }

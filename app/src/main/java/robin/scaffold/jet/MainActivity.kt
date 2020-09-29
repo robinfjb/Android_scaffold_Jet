@@ -1,6 +1,7 @@
 package robin.scaffold.jet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
@@ -12,6 +13,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import robin.sdk.ndk.JniManager
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -42,6 +45,10 @@ class MainActivity : AppCompatActivity() {
            /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()*/
             activityViewModel.fabClick()
+
+            Log.e("robin", JniManager().getPublicKey(this@MainActivity))
+            Log.e("robin", JniManager().getSecret(this@MainActivity))
+            Log.e("robin", JniManager().getDesKey(this@MainActivity))
         }
     }
 

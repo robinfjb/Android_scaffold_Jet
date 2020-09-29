@@ -113,7 +113,7 @@ public class TrackActivity extends AppCompatActivity {
                 });
             }
         }, 1500);
-        Log.e("fjb", Utils.INSTANCE.getAbsolutePath(editText));
+        Log.e("robin", Utils.INSTANCE.getAbsolutePath(editText));
     }
 
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -134,7 +134,7 @@ public class TrackActivity extends AppCompatActivity {
             holder.textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("fjb", Utils.INSTANCE.getAbsolutePath(holder.textView));
+                    Log.e("robin", Utils.INSTANCE.getAbsolutePath(holder.textView));
                 }
             });
         }

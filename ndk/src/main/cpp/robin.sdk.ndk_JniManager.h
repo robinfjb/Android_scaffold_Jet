@@ -1,0 +1,8 @@
+//
+// Created by admin on 2020/9/25.
+//
+
+#ifndef JET_ROBIN_SDK_NDK_JNIMANAGER_H
+#define JET_ROBIN_SDK_NDK_JNIMANAGER_H
+
+#endif //JET_ROBIN_SDK_NDK_JNIMANAGER_H
