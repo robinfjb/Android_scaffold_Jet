@@ -1,10 +1,13 @@
 package robin.scaffold.jet.databinding
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import org.w3c.dom.Text
 
 object BindingAdapters {
     @JvmStatic
