@@ -1,5 +1,9 @@
 package robin.scaffold.jet;
 
+import android.app.Activity;
+import android.app.Application;
+import android.util.DisplayMetrics;
+
 import org.junit.Assert;
 import org.junit.Test;
 
