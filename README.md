@@ -13,3 +13,6 @@ https://juejin.im/post/6872248840158707726
 
 ### keeplive
 双进程守护, 1像素Activity, Forground Service, 无声音乐
+
+### ndk
+加密
