@@ -7,7 +7,6 @@ Databinding + LiveData + Lifecycle + ViewModel + Navigation + Rxjava + Room + Pa
 
 ### track工程
 无痕监听启动速度，fps，view点击，touch事件
-
 AspectJ+hook
 https://juejin.im/post/6872248840158707726
 
